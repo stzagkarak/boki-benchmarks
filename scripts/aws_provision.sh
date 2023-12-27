@@ -27,6 +27,7 @@ aws --output text --region $AWS_REGION ec2 authorize-security-group-ingress \
 
 LOCAL_IP=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
 
+LOCAL_IP='172.31.43.55' # manually added. Above command not working
 echo $LOCAL_IP
 
 # Allow SSH traffic from current machine to the newly create security group
