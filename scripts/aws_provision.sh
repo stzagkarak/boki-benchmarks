@@ -13,6 +13,8 @@ SECURITY_GROUP_ID=$(\
     aws --output text --region $AWS_REGION ec2 create-security-group \
     --group-name $SECURITY_GROUP_NAME --description "Boki experiments")
 
+SECURITY_GROUP_ID='sg-0e468247e566b1a2a' # manually added. Above command not working
+
 echo $AWS_REGION
 echo $PLACEMENT_GROUP_NAME
 echo $SECURITY_GROUP_NAME
