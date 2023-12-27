@@ -10,11 +10,11 @@ import string
 import argparse
 import subprocess as sp
 
-AWS_REGION = 'us-east-2'
+AWS_REGION = 'us-east-1'
 AMI_ID = 'ami-0c6de836734de3280'
 SECURITY_GROUP_NAME = 'boki'
 PLACEMENT_GROUP = 'boki-experiments'
-AVAILABILITY_ZONE = 'us-east-2a'
+AVAILABILITY_ZONE = 'us-east-1a'
 
 def random_string(length):
     letters = string.ascii_lowercase

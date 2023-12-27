@@ -1,6 +1,6 @@
 #!/bin/bash
 
-AWS_REGION="us-east-2"
+AWS_REGION="us-east-1"
 PLACEMENT_GROUP_NAME="boki-experiments"
 SECURITY_GROUP_NAME="boki"
 

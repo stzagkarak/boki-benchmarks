@@ -2,7 +2,7 @@
 BASE_DIR=`realpath $(dirname $0)`
 ROOT_DIR=`realpath $BASE_DIR/../../..`
 
-AWS_REGION=us-east-2
+AWS_REGION=us-east-1
 
 EXP_DIR=$BASE_DIR/results/$1
 QPS=$2

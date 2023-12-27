@@ -20,5 +20,5 @@
         "consumer-fn": { "placement_label": "engine_node", "replicas": 8, "need_aws_env": true, "mount_certs": true },
         "producer-fn": { "placement_label": "engine_node", "replicas": 8, "need_aws_env": true, "mount_certs": true }
     },
-    "aws_region": "us-east-2"
+    "aws_region": "us-east-1"
 }
