@@ -3,21 +3,22 @@ ROOT_DIR=`realpath $(dirname $0)/..`
 
 # Message queue workload for BokiQueue and Pulsar
 RUN_QUEUE_BOKI=y
-RUN_QUEUE_PUSLAR=y
-RUN_QUEUE_SQS=y
+RUN_QUEUE_PUSLAR=n
+RUN_QUEUE_SQS=n
 
 # Retwis workload for BokiStore and MongoDB
-RUN_STORE_BOKI=y
-RUN_STORE_MONGO=y
+RUN_STORE_BOKI=n
+RUN_STORE_MONGO=n
 
 # Workflow workload for BokiFlow and Beldi
-RUN_WORKFLOW_BOKI=y
-RUN_WORKFLOW_BELDI=y
+RUN_WORKFLOW_BOKI=n
+RUN_WORKFLOW_BELDI=n
 
 HELPER_SCRIPT=$ROOT_DIR/scripts/exp_helper
 
 # This IAM role has DynamoDB read/write access
-BOKI_MACHINE_IAM=boki-ae-experiments
+## changed it to an existing role
+BOKI_MACHINE_IAM=LabRole
 
 if [[ ! -z $RUN_QUEUE_BOKI ]] && [[ $RUN_QUEUE_BOKI == "y" ]]; then
 echo "====== Start running BokiQueue experiments ======"
@@ -27,8 +28,10 @@ BASE_DIR=$ROOT_DIR/experiments/queue/boki
 $HELPER_SCRIPT start-machines --base-dir=$BASE_DIR --instance-iam-role $BOKI_MACHINE_IAM
 
 $BASE_DIR/run_once.sh p128c128 128 6 1 128
-$BASE_DIR/run_once.sh p128c32  32  8 1 128
-$BASE_DIR/run_once.sh p32c128  128 3 1 32
+
+# testing, disable lower entries
+#$BASE_DIR/run_once.sh p128c32  32  8 1 128
+#$BASE_DIR/run_once.sh p32c128  128 3 1 32
 
 $HELPER_SCRIPT stop-machines --base-dir=$BASE_DIR
 

@@ -219,7 +219,7 @@ def stop_machines_main(base_dir):
     with open(os.path.join(base_dir, 'machines.json')) as fin:
         machine_infos = json.load(fin)
     stop_instances(machine_infos)
-    os.remove(os.path.join(base_dir, 'machines.json'))
+    #os.remove(os.path.join(base_dir, 'machines.json'))
 
 def generate_docker_compose_main(base_dir):
     with open(os.path.join(base_dir, 'config.json')) as fin:
