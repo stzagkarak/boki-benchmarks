@@ -44,9 +44,14 @@ def parse_ec2_machines(config):
     )
     
     for instance in available_instances:
+
+        instance_config_info = config[machines][instance['Tags']['Value']]
+
         results[instance['Tags']['Value']] = {
-            instance_id: "",
-            dns: 
+            "instance_id": instance["InstanceId"],
+            "dns": instance["PrivateDnsName"],
+            "ip": instance["PrivateIpAddress"],
+            "role": instance_config_info["role"]
         }
 
     return results
