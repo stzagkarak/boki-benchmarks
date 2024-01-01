@@ -34,16 +34,21 @@ def run_remote_command(ssh_str, cmd):
 def parse_ec2_machines(config):
     results = {}
     
-    instance_info = run_aws_ec2_command(
-        ["decribe-instances", 
+    available_instances = run_aws_ec2_command(
+        ["describe-instances", 
          "--query", 
-         'Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}'
+         'Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}',
          "--filters",
          "Name=instance-state-name,Values=running"
         ]
     )
-    instance_info = instance_info[0];
-    print(instance_info)
+    
+    for instance in available_instances:
+        results[instance['Tags']['Value']] = {
+            instance_id: "",
+            dns: 
+        }
 
     return results
 
+parse_ec2_machines()
