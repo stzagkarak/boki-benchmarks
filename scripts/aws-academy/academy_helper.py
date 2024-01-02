@@ -56,4 +56,4 @@ def parse_ec2_machines(config):
 
     return results
 
-parse_ec2_machines()
+parse_ec2_machines(None)
