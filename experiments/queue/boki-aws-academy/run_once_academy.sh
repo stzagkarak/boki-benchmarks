@@ -9,7 +9,7 @@ INTERVAL2=$4
 NUM_PRODUCER=$5
 NUM_CONSUMER=$NUM_SHARDS
 
-ACADEMY_HELPER_SCRIPT=$ROOT_DIR/scripts/aws_academy/academy_helper.py
+ACADEMY_HELPER_SCRIPT=$ROOT_DIR/scripts/aws-academy/academy_helper.py
 
 MANAGER_HOST=`$ACADEMY_HELPER_SCRIPT get-docker-manager-host --base-dir=$BASE_DIR`
 CLIENT_HOST=`$ACADEMY_HELPER_SCRIPT get-client-host --base-dir=$BASE_DIR`

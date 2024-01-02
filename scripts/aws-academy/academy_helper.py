@@ -41,6 +41,7 @@ def get_available_machines(config):
          "Name=instance-state-name,Values=running"
         ]
     )
+    print(available_instances)
     
     for instance in available_instances:
     

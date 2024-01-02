@@ -2,7 +2,7 @@
 BASE_DIR=`realpath $(dirname $0)`
 ROOT_DIR=`realpath $BASE_DIR/../../..`
 
-ACADEMY_HELPER_SCRIPT=$ROOT_DIR/scripts/aws_academy/academy_helper.py
+ACADEMY_HELPER_SCRIPT=$ROOT_DIR/scripts/aws-academy/academy_helper.py
 
 
 # create machines.json file
