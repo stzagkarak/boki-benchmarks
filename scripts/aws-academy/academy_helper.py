@@ -44,7 +44,9 @@ def get_available_machines(config):
     print(available_instances)
     
     for instance in available_instances:
-    
+        
+        print(instance)
+
         instance_config_info = config["machines"][instance['Tags']['Value']]
 
         results[instance['Tags']['Value']] = {
