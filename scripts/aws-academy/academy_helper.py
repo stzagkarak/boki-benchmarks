@@ -123,17 +123,19 @@ def configure_machines(base_dir):
             json.dump(machine_infos, fout, indent=4, sort_keys=True)
     
     except Exception as e:
-        disband_docker_swarm(machine_infos)
+        disband_docker_swarm(machine_infos, base_dir)
         raise e
 
 
-def disband_docker_swarm(machine_infos):
-    for name, machine_info in machine_infos.items():
-        if machine_info['role'] == 'manager':
-            run_remote_command(
-                machine_info['dns'],
-                ['docker', 'service', 'rm', '$(docker service ls -q)'])
-    time.sleep(10)
+def disband_docker_swarm(machine_infos, base_dir):
+
+    if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
+        for name, machine_info in machine_infos.items():
+            if machine_info['role'] == 'manager':
+                run_remote_command(
+                    machine_info['dns'],
+                    ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
+        time.sleep(10)
     for name, machine_info in machine_infos.items():
         run_remote_command(
             machine_info['dns'],
@@ -147,7 +149,7 @@ def disband_machines(base_dir):
     with open(os.path.join(base_dir, 'machines.json')) as fin:
         machine_infos = json.load(fin)
 
-    disband_docker_swarm(machine_infos)
+    disband_docker_swarm(machine_infos, base_dir)
     os.remove(os.path.join(base_dir, 'machines.json'))
 
     return
