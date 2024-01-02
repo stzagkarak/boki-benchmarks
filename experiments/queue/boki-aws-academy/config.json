@@ -1,13 +1,13 @@
 {
     "machines": {
-        "bokiexp-gateway": { "type": "z1d.large", "role": "manager" },
-        "bokiexp-sequencer-1": { "type": "z1d.large", "role": "worker", "labels": ["sequencer_node=true"] },
-        "bokiexp-engine-1": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
-        "bokiexp-engine-2": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
-        "bokiexp-engine-3": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
-        "bokiexp-storage-1": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
-        "bokiexp-storage-2": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
-        "bokiexp-client": { "type": "z1d.large", "role": "client" }
+        "exp-gateway": { "type": "z1d.large", "role": "manager" },
+        "exp-sequencer-1": { "type": "z1d.large", "role": "worker", "labels": ["sequencer_node=true"] },
+        "exp-engine-1": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-engine-2": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-engine-3": { "type": "z1d.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-storage-1": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
+        "exp-storage-2": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
+        "exp-client": { "type": "z1d.large", "role": "client" }
     },
     "services": {
         "zookeeper": { "placement": "bokiexp-gateway" },
