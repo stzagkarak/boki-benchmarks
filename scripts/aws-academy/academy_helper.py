@@ -41,18 +41,19 @@ def get_available_machines(config):
          "Name=instance-state-name,Values=running"
         ]
     )
-    print(available_instances)
     
     for instance in available_instances:
         
-        print(instance)
+        instance_name = instance[0]['Tags'][0]['Value']
+        print(instance_name)
 
-        instance_config_info = config["machines"][instance['Tags']['Value']]
+        instance_config_info = config[instance_name]
+        print(instance_config_info)
 
-        results[instance['Tags']['Value']] = {
-            "instance_id": instance["InstanceId"],
-            "dns": instance["PrivateDnsName"],
-            "ip": instance["PrivateIpAddress"],
+        results[instance_name] = {
+            "instance_id": instance[0]["InstanceId"],
+            "dns": instance[0]["PrivateDnsName"],
+            "ip": instance[0]["PrivateIpAddress"],
             "role": instance_config_info["role"]
         }
 
@@ -68,7 +69,6 @@ def configure_machines(base_dir):
         config = json.load(fin)
     
     machine_info = get_available_machines(config["machines"])
-    print(machine_info)
 
 
     
@@ -120,7 +120,3 @@ if __name__ == '__main__':
             err_str += '\n'
         sys.stderr.write(err_str)
         sys.exit(1)
-
-    
-
-print(configure_machines(None))
