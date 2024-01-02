@@ -11,4 +11,4 @@ $ACADEMY_HELPER_SCRIPT configure-machines --base-dir=$BASE_DIR
 #$BASE_DIR/run_once_academy.sh p64c64   64  6 1 64
 
 # clean the machines up
-#$ACADEMY_HELPER_SCRIPT stop-machines --base-dir=$BASE_DIR
+$ACADEMY_HELPER_SCRIPT disband-machines --base-dir=$BASE_DIR
