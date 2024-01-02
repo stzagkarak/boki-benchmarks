@@ -1,0 +1,50 @@
+{
+    "exp-gateway": {
+        "instance_id": "i-0437bed9d541f19ba",
+        "dns": "ip-172-31-16-25.ec2.internal",
+        "ip": "172.31.16.25",
+        "role": "manager"
+    },
+    "exp-sequencer-1": {
+        "instance_id": "i-079d9a9743cc03354",
+        "dns": "ip-172-31-16-254.ec2.internal",
+        "ip": "172.31.16.254",
+        "role": "worker"
+    },
+    "exp-engine-1": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "worker"
+    },
+    "exp-engine-2": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "worker"
+    },
+    "exp-engine-3": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "worker"
+    },
+    "exp-storage-1": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "worker"
+    },
+    "exp-storage-2": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "worker"
+    },
+    "exp-client": {
+        "instance_id": "",
+        "dns": "",
+        "ip": "",
+        "role": "client"
+    }
+}

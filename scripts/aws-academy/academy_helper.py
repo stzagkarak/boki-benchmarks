@@ -45,7 +45,7 @@ def parse_ec2_machines(config):
     
     for instance in available_instances:
 
-        instance_config_info = config[machines][instance['Tags']['Value']]
+        instance_config_info = config["machines"][instance['Tags']['Value']]
 
         results[instance['Tags']['Value']] = {
             "instance_id": instance["InstanceId"],

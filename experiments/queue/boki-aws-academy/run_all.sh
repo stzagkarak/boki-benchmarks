@@ -4,6 +4,7 @@ ROOT_DIR=`realpath $BASE_DIR/../../..`
 
 HELPER_SCRIPT=$ROOT_DIR/scripts/exp_helper
 
+# replace this with my academy_helper script
 #$HELPER_SCRIPT start-machines --base-dir=$BASE_DIR
 
 $BASE_DIR/run_once.sh p64c64   64  6 1 64
