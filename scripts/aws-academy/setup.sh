@@ -1,3 +1,6 @@
+#!/bin/bash
+
+
 AUTH='echo "ubuntu"'
 
 # setup hostname 
@@ -7,7 +10,7 @@ $AUTH | sudo -S hostnamectl set-hostname $1
 # install docker 
 
 curl -fsSL https://get.docker.com -o get-docker.sh
-$AUTH | sudo -S sh ~/get-docker.sh
+$AUTH | sudo -S sh /home/ubuntu/get-docker.sh
 $AUTH | sudo -S usermod -aG docker $USER
 newgrp docker
 docker run hello-world

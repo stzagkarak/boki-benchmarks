@@ -1,3 +1,5 @@
+#!/bin/bash
+
 #$1 -- machine private ipv4
 #$2 -- new machine hostname (as role) 
 
@@ -10,5 +12,5 @@ scp -q /home/ec2-user/ubuntu-build/* ubuntu@$1:/boki
 
 # copy a setup script in the machine
 scp -q ./setup.sh ubuntu@$1:~
-ssh -q ubuntu@$1 -- $AUTH | sudo -S chmod a+x ~/setup.sh
-ssh -q ubuntu@$1 -- $AUTH | sudo -S ~/setup.sh $2
+ssh -q ubuntu@$1 -- $AUTH | sudo -S chmod a+x /home/ubuntu/setup.sh
+ssh -q ubuntu@$1 -- $AUTH | sudo -S /home/ubuntu/setup.sh $2
