@@ -1,7 +1,7 @@
 #$1 -- machine private ipv4
 #$2 -- new machine hostname (as role) 
 
-AUTH=$(echo "ubuntu")
+AUTH='echo "ubuntu"'
 
 # copy built boki executables in machine
 ssh -q ubuntu@$1 -- $AUTH | sudo -S mkdir /boki

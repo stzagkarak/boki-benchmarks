@@ -1,4 +1,4 @@
-AUTH=$(echo "ubuntu")
+AUTH='echo "ubuntu"'
 
 # setup hostname 
 
