@@ -10,14 +10,14 @@
         "exp-client": { "type": "z1d.large", "role": "client" }
     },
     "services": {
-        "zookeeper": { "placement": "bokiexp-gateway" },
-        "zookeeper-setup": { "placement": "bokiexp-gateway" },
-        "boki-controller": { "placement": "bokiexp-gateway" },
-        "boki-gateway": { "placement": "bokiexp-gateway" },
+        "zookeeper": { "placement": "exp-gateway" },
+        "zookeeper-setup": { "placement": "exp-gateway" },
+        "boki-controller": { "placement": "exp-gateway" },
+        "boki-gateway": { "placement": "exp-gateway" },
         "boki-storage": { "placement_label": "storage_node", "replicas": 3 }, 
         "boki-sequencer": { "placement_label": "sequencer_node", "replicas": 3 },
-        "boki-engine": { "placement_label": "engine_node", "replicas": 8 },
-        "consumer-fn": { "placement_label": "engine_node", "replicas": 8 },
-        "producer-fn": { "placement_label": "engine_node", "replicas": 8 }
+        "boki-engine": { "placement_label": "engine_node", "replicas": 2 },
+        "consumer-fn": { "placement_label": "engine_node", "replicas": 2 },
+        "producer-fn": { "placement_label": "engine_node", "replicas": 2 }
     }
 }
