@@ -27,14 +27,16 @@ def get_available_machines(config):
     available_instances = run_aws_ec2_command(
         ["describe-instances", 
          "--query", 
-         '`Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}`',
+         'Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}',
          "--filters",
          "Name=instance-state-name,Values=running"
         ]
     )
     
     for reservation in available_instances:
+        print(reservation)
         for instance in reservation:
+            print(instance)
 
             instance_name = instance['Tags'][0]['Value']
             if(instance_name == "setup-node"): continue;
