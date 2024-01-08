@@ -128,7 +128,7 @@ def configure_machines(base_dir):
     
     except Exception as e:
         print(e)
-        disband_docker_swarm(machine_infos, base_dir)
+        disband_swarm(machine_infos, base_dir)
         raise e
 
 def setup_instance_storage(machine_configs, machine_infos):
@@ -140,24 +140,6 @@ def setup_instance_storage(machine_configs, machine_infos):
             run_remote_command(dns, ['sudo', 'mkdir', '/mnt/storage'])
             run_remote_command(dns, ['sudo', 'mount', '-o', 'defaults,noatime', device, '/mnt/storage'])
 
-def disband_docker_swarm(machine_infos, base_dir):
-
-    if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
-        for name, machine_info in machine_infos.items():
-            if machine_info['role'] == 'manager':
-                run_remote_command(
-                    machine_info['dns'],
-                    ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
-        time.sleep(10)
-        
-    for name, machine_info in machine_infos.items():
-        if(name == "setup-node" or name == "exp-client"): continue;
-        
-        run_remote_command(
-            machine_info['dns'],
-            ['docker', 'swarm', 'leave', '--force'])
-    return
-
 def disband_machines(base_dir):
 
     if not os.path.exists(os.path.join(base_dir, 'machines.json')):
@@ -168,13 +150,7 @@ def disband_machines(base_dir):
     disband_docker_swarm(machine_infos, base_dir)
     os.remove(os.path.join(base_dir, 'machines.json'))
 
-def disband_swarm_using_config(base_dir):
-    
-    with open(os.path.join(base_dir, 'config.json')) as fin:
-        config = json.load(fin)
-
-    machine_infos = get_available_machines(config["machines"])
-    
+def disband_swarm(machine_infos, base_dir):
     if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
         for name, machine_info in machine_infos.items():
             if machine_info['role'] == 'manager':
@@ -184,12 +160,23 @@ def disband_swarm_using_config(base_dir):
         time.sleep(10)
     for name, machine_info in machine_infos.items():
         
-        if(name == "setup-node" or name == "exp-client"): continue;
-        
-        run_remote_command(
-            machine_info['dns'],
-            ['docker', 'swarm', 'leave', '--force'])
+        try:
+            run_remote_command(
+                machine_info['dns'],
+                ['docker', 'swarm', 'leave', '--force'])
+        except Exception as e:
+            print(machine_info['dns'] + " : " + e)
+            continue;
 
+def disband_swarm_using_config(base_dir):
+    
+    with open(os.path.join(base_dir, 'config.json')) as fin:
+        config = json.load(fin)
+
+    machine_infos = get_available_machines(config["machines"])
+
+    disband_swarm(machine_infos, base_dir)
+    
     os.remove(os.path.join(base_dir, 'machines.json'))
 
 
