@@ -120,7 +120,7 @@ def configure_machines(base_dir):
         machine_infos = get_available_machines(config["machines"])
 
         setup_docker_swarm(machine_infos)
-        setup_instance_storage(config["machines"], machine_infos)
+        #setup_instance_storage(config["machines"], machine_infos)
 
         with open(os.path.join(base_dir, 'machines.json'), 'w') as fout:
             json.dump(machine_infos, fout, indent=4, sort_keys=True)
