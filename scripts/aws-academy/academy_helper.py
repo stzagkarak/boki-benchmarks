@@ -143,17 +143,19 @@ def setup_instance_storage(machine_configs, machine_infos):
 def disband_docker_swarm(machine_infos, base_dir):
 
     if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
-        if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
-            for name, machine_info in machine_infos.items():
-                if machine_info['role'] == 'manager':
-                    run_remote_command(
-                        machine_info['dns'],
-                        ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
-            time.sleep(10)
         for name, machine_info in machine_infos.items():
-            run_remote_command(
-                machine_info['dns'],
-                ['docker', 'swarm', 'leave', '--force'])
+            if machine_info['role'] == 'manager':
+                run_remote_command(
+                    machine_info['dns'],
+                    ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
+        time.sleep(10)
+        
+    for name, machine_info in machine_infos.items():
+        if(name == "setup-node" or name == "exp-client"): continue;
+        
+        run_remote_command(
+            machine_info['dns'],
+            ['docker', 'swarm', 'leave', '--force'])
     return
 
 def disband_machines(base_dir):
@@ -181,6 +183,9 @@ def disband_swarm_using_config(base_dir):
                     ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
         time.sleep(10)
     for name, machine_info in machine_infos.items():
+        
+        if(name == "setup-node" or name == "exp-client"): continue;
+        
         run_remote_command(
             machine_info['dns'],
             ['docker', 'swarm', 'leave', '--force'])
