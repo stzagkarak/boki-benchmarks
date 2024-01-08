@@ -18,7 +18,7 @@ CLIENT_HOST=`$ACADEMY_HELPER_SCRIPT get-client-host --base-dir=$BASE_DIR`
 ENTRY_HOST=`$ACADEMY_HELPER_SCRIPT get-service-host --base-dir=$BASE_DIR --service=boki-gateway`
 ALL_HOSTS=`$ACADEMY_HELPER_SCRIPT get-all-server-hosts --base-dir=$BASE_DIR`
 
-$HELPER_SCRIPT generate-docker-compose --base-dir=$BASE_DIR
+$ACADEMY_HELPER_SCRIPT generate-docker-compose --base-dir=$BASE_DIR
 scp -q $BASE_DIR/docker-compose.yml $MANAGER_HOST:~
 scp -q $BASE_DIR/docker-compose-generated.yml $MANAGER_HOST:~
 
