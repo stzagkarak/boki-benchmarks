@@ -36,7 +36,7 @@ sleep 40
 echo "Copying -- zk_setup.sh on MANAGER_HOST"
 scp -q $ROOT_DIR/scripts/zk_setup.sh $MANAGER_HOST:/tmp/zk_setup.sh
 
-echo "Copying -- zk_setup.sh on ALL_HOSTS"
+echo "Copying -- nightcore_config.sh on ALL_HOSTS"
 for host in $ALL_HOSTS; do
     scp -q $BASE_DIR/nightcore_config.json $host:/tmp/nightcore_config.json
 done

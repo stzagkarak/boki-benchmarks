@@ -2,9 +2,9 @@
     "machines": {
         "exp-gateway": { "type": "r7i.large", "role": "manager" },
         "exp-sequencer-1": { "type": "r7i.large", "role": "worker", "labels": ["sequencer_node=true"] },
-        "exp-sequencer-2": { "type": "r7i.large", "role": "worker", "labels": ["sequencer_node=true"] },
         "exp-engine-1": { "type": "r7i.large", "role": "worker", "labels": [ "engine_node=true" ] },
         "exp-engine-2": { "type": "r7i.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-engine-3": { "type": "r7i.large", "role": "worker", "labels": [ "engine_node=true" ] },
         "exp-storage-1": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
         "exp-storage-2": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
         "exp-client": { "type": "r7i.large", "role": "client" }
