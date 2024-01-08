@@ -65,10 +65,10 @@ done
 
 echo "Executing -- docker stack deploy on MANAGER_HOST"
 ssh -q $MANAGER_HOST -- docker stack deploy \
-    -c ~/docker-compose-generated.yml -c ~/docker-compose.yml boki-experiment
+    -c /home/ubuntu/docker-compose-generated.yml -c /home/ubuntu/docker-compose.yml boki-experiment
 
-echo "Sleeping for 500 secs"
-sleep 500
+echo "Sleeping for 60 secs"
+sleep 60
 
 #echo "Optimizing docker on ALL_ENGINE_HOSTS"
 #for HOST in $ALL_ENGINE_HOSTS; do
