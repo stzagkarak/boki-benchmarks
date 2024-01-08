@@ -147,7 +147,7 @@ def disband_machines(base_dir):
     with open(os.path.join(base_dir, 'machines.json')) as fin:
         machine_infos = json.load(fin)
 
-    disband_docker_swarm(machine_infos, base_dir)
+    disband_swarm(machine_infos, base_dir)
     os.remove(os.path.join(base_dir, 'machines.json'))
 
 def disband_swarm(machine_infos, base_dir):
@@ -159,6 +159,7 @@ def disband_swarm(machine_infos, base_dir):
                         run_remote_command(
                             machine_info['dns'],
                             ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
+                
                 time.sleep(10)
     except Exception as e:
         print("Services: " + str(e))
@@ -182,8 +183,16 @@ def disband_swarm_using_config(base_dir):
 
     disband_swarm(machine_infos, base_dir)
     
-    os.remove(os.path.join(base_dir, 'machines.json'))
+    try:
+        os.remove(os.path.join(base_dir, 'machines.json'))
+    except Exception as e:
+            print("Remove file: " + " : " + str(e))
 
+    try:
+        os.remove(os.path.join(base_dir, 'docker-compose-generated.yml'))
+    except Exception as e:
+            print("Remove file: " + " : " + str(e))
+    
 
 def get_host_main(base_dir, machine_name):
     if not os.path.exists(os.path.join(base_dir, 'machines.json')):
