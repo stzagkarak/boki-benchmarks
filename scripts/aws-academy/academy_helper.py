@@ -151,13 +151,18 @@ def disband_machines(base_dir):
     os.remove(os.path.join(base_dir, 'machines.json'))
 
 def disband_swarm(machine_infos, base_dir):
-    if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
-        for name, machine_info in machine_infos.items():
-            if machine_info['role'] == 'manager':
-                run_remote_command(
-                    machine_info['dns'],
-                    ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
-        time.sleep(10)
+
+    try:
+        if os.path.exists(os.path.join(base_dir, 'docker-compose-generated.yml')):
+                for name, machine_info in machine_infos.items():
+                    if machine_info['role'] == 'manager':
+                        run_remote_command(
+                            machine_info['dns'],
+                            ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
+                time.sleep(10)
+    except Exception as e:
+        print("Services: " + str(e))
+
     for name, machine_info in machine_infos.items():
         
         try:
