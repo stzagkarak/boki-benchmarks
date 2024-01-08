@@ -67,6 +67,6 @@ with open(os.path.join("/home/ec2-user/boki-benchmarks/experiments/queue/boki-aw
 print("CONFIG")
 print(config)
 
-res = get_available_machines(config)
+res = get_available_machines(config["machines"])
 
 print(res)
