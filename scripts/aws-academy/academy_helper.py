@@ -36,28 +36,29 @@ def get_available_machines(config):
     available_instances = run_aws_ec2_command(
         ["describe-instances", 
          "--query", 
-         'Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}',
+         '`Reservations[*].Instances[*].{"InstanceId":InstanceId,"PrivateDnsName":PrivateDnsName,"PrivateIpAddress":PrivateIpAddress,"Tags":Tags[*]}`',
          "--filters",
          "Name=instance-state-name,Values=running"
         ]
     )
     
-    for instance in available_instances:
-        
-        instance_name = instance[0]['Tags'][0]['Value']
-        if(instance_name == "setup-node"): continue;
+    for reservation in available_instances:
+        for instance in reservation:
 
-        instance_config_info = config[instance_name]
+            instance_name = instance['Tags'][0]['Value']
+            if(instance_name == "setup-node"): continue;
 
-        results[instance_name] = {
-            "instance_id": instance[0]["InstanceId"],
-            "dns": instance[0]["PrivateDnsName"],
-            "ip": instance[0]["PrivateIpAddress"],
-            "role": instance_config_info["role"]
-        }
+            instance_config_info = config[instance_name]
 
-        if 'labels' in instance_config_info:
-                results[instance_name]['labels'] = instance_config_info['labels']
+            results[instance_name] = {
+                "instance_id": instance["InstanceId"],
+                "dns": instance["PrivateDnsName"],
+                "ip": instance["PrivateIpAddress"],
+                "role": instance_config_info["role"]
+            }
+
+            if 'labels' in instance_config_info:
+                    results[instance_name]['labels'] = instance_config_info['labels']
 
     return results
 

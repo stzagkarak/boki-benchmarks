@@ -1,0 +1,107 @@
+[
+    [
+        {
+            "InstanceId": "i-040d693a0ee07efbe",
+            "PrivateDnsName": "ip-172-31-27-27.ec2.internal",
+            "PrivateIpAddress": "172.31.27.27",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-storage-1"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0da28814eaab91c74",
+            "PrivateDnsName": "ip-172-31-24-45.ec2.internal",
+            "PrivateIpAddress": "172.31.24.45",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-storage-2"
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "InstanceId": "i-07e1d10520d3e33ea",
+            "PrivateDnsName": "ip-172-31-95-222.ec2.internal",
+            "PrivateIpAddress": "172.31.95.222",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-gateway"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0de9c414b86b52985",
+            "PrivateDnsName": "ip-172-31-92-26.ec2.internal",
+            "PrivateIpAddress": "172.31.92.26",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-sequencer-1"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-00249fcf051a6a9a9",
+            "PrivateDnsName": "ip-172-31-81-107.ec2.internal",
+            "PrivateIpAddress": "172.31.81.107",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-engine-1"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0a41ef54d009cbc7f",
+            "PrivateDnsName": "ip-172-31-82-118.ec2.internal",
+            "PrivateIpAddress": "172.31.82.118",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-engine-2"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-0c9a0b991cc56e4f6",
+            "PrivateDnsName": "ip-172-31-88-246.ec2.internal",
+            "PrivateIpAddress": "172.31.88.246",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-engine-3"
+                }
+            ]
+        },
+        {
+            "InstanceId": "i-08c2c7069da7fb4fc",
+            "PrivateDnsName": "ip-172-31-86-64.ec2.internal",
+            "PrivateIpAddress": "172.31.86.64",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "exp-client"
+                }
+            ]
+        }
+    ],
+    [
+        {
+            "InstanceId": "i-0f7419bdf9b685c5e",
+            "PrivateDnsName": "ip-172-31-43-55.ec2.internal",
+            "PrivateIpAddress": "172.31.43.55",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "setup-node"
+                }
+            ]
+        }
+    ]
+]
