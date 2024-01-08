@@ -72,6 +72,7 @@ def get_available_machines(config):
 
 def setup_docker_swarm(machine_infos):
     manager_machine = None
+    print("Docker swarm phase 1")
     for name, machine_info in machine_infos.items():
         if machine_info['role'] == 'manager':
             if manager_machine is not None:
@@ -87,6 +88,7 @@ def setup_docker_swarm(machine_infos):
             join_token = join_token.strip()
     if manager_machine is None:
         raise Exception('No manager machine')
+    print("Docker swarm phase 2")
     for name, machine_info in machine_infos.items():
         if machine_info['role'] == 'worker':
             run_remote_command(
@@ -94,6 +96,7 @@ def setup_docker_swarm(machine_infos):
                 ['docker', 'swarm', 'join', '--token', join_token,
                  machine_infos[manager_machine]['ip']+':2377'])
     time.sleep(10)
+    print("Docker swarm phase 3")
     for name, machine_info in machine_infos.items():
         if 'labels' in machine_info:
             cmd = ['docker', 'node', 'update']
@@ -115,15 +118,16 @@ def configure_machines(base_dir):
             config = json.load(fin)
 
         machine_infos = get_available_machines(config["machines"])
-        print(machine_infos)
 
         setup_docker_swarm(machine_infos)
         setup_instance_storage(config["machines"], machine_infos)
 
         with open(os.path.join(base_dir, 'machines.json'), 'w') as fout:
             json.dump(machine_infos, fout, indent=4, sort_keys=True)
+            print("Wrote machines.json")
     
     except Exception as e:
+        print(e)
         disband_docker_swarm(machine_infos, base_dir)
         raise e
 
@@ -145,10 +149,10 @@ def disband_docker_swarm(machine_infos, base_dir):
                     machine_info['dns'],
                     ['docker', 'service', 'rm', '$(docker', 'service', 'ls', '-q)'])
         time.sleep(10)
-    for name, machine_info in machine_infos.items():
-        run_remote_command(
-            machine_info['dns'],
-            ['docker', 'swarm', 'leave', '--force'])
+        for name, machine_info in machine_infos.items():
+            run_remote_command(
+                machine_info['dns'],
+                ['docker', 'swarm', 'leave', '--force'])
     return
 
 def disband_machines(base_dir):

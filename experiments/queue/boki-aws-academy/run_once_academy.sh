@@ -1,3 +1,5 @@
+echo "Running run_once_academy.sh"
+
 BASE_DIR=`realpath $(dirname $0)`
 ROOT_DIR=`realpath $BASE_DIR/../../..`
 
