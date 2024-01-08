@@ -165,7 +165,7 @@ def disband_swarm(machine_infos, base_dir):
                 machine_info['dns'],
                 ['docker', 'swarm', 'leave', '--force'])
         except Exception as e:
-            print(machine_info['dns'] + " : " + e)
+            print(machine_info['dns'] + " : " + str(e))
             continue;
 
 def disband_swarm_using_config(base_dir):
