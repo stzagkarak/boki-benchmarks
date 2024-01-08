@@ -34,14 +34,20 @@ def get_available_machines(config):
     )
     
     for reservation in available_instances:
+        print("RESERVATION")
         print(reservation)
         for instance in reservation:
+            print("INSTANCE")
             print(instance)
 
             instance_name = instance['Tags'][0]['Value']
+            print("INSTANCE_NAME")
+            print(instance_name)
             if(instance_name == "setup-node"): continue;
 
             instance_config_info = config[instance_name]
+            print("INSTANCE_CONFIG_INFO")
+            print(instance_config_info)
 
             results[instance_name] = {
                 "instance_id": instance["InstanceId"],
@@ -57,6 +63,10 @@ def get_available_machines(config):
 
 with open(os.path.join("/home/ec2-user/boki-benchmarks/experiments/queue/boki-aws-academy", 'config.json')) as fin:
             config = json.load(fin)
+
+print("CONFIG")
+print(config)
+
 res = get_available_machines(config)
 
 print(res)
