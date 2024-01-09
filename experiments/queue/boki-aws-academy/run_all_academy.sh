@@ -10,7 +10,8 @@ echo "Running configure-machines on ACADEMY_HELPER_SCRIPT"
 $ACADEMY_HELPER_SCRIPT configure-machines --base-dir=$BASE_DIR
 
 echo "Running run_once_academy.sh"
-$BASE_DIR/run_once_academy.sh p64c64   64  6 1 64
+#$BASE_DIR/run_once_academy.sh p64c64   64  6 1 64
+$BASE_DIR/run_once_academy.sh p128c32 32 8  1 128
 
 # clean the machines up
 echo "Running disband-machines on ACADEMY_HELPER_SCRIPT"
