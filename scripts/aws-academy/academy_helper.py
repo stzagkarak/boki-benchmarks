@@ -286,8 +286,8 @@ def generate_docker_compose_main(base_dir):
             }
         elif 'placement_label' in service_config:
             service_docker_compose['deploy']['placement'] = {
-                'constraints': ['node.labels.%s == true' % (service_config['placement_label'],)],
-                'max_replicas_per_node': 1
+                'constraints': ['node.labels.%s == true' % (service_config['placement_label'],)]#,
+                #'max_replicas_per_node': 1
             }
         service_docker_compose['environment'] = []
         service_docker_compose['volumes'] = []
