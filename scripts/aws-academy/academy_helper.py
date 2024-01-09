@@ -285,10 +285,18 @@ def generate_docker_compose_main(base_dir):
                 'constraints': ['node.hostname == %s' % (service_config['placement'],)]
             }
         elif 'placement_label' in service_config:
-            service_docker_compose['deploy']['placement'] = {
-                'constraints': ['node.labels.%s == true' % (service_config['placement_label'],)]#,
-                #'max_replicas_per_node': 1
-            }
+
+            if(name == "boki-storage"):
+                service_docker_compose['deploy']['placement'] = {
+                    'constraints': ['node.labels.%s == true' % (service_config['placement_label'],)],
+                    'max_replicas_per_node': 1
+                }
+            else:
+                service_docker_compose['deploy']['placement'] = {
+                    'constraints': ['node.labels.%s == true' % (service_config['placement_label'],)]#,
+                    #'max_replicas_per_node': 1
+                }
+                
         service_docker_compose['environment'] = []
         service_docker_compose['volumes'] = []
         if 'need_aws_env' in service_config and service_config['need_aws_env']:
