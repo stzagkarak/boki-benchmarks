@@ -192,7 +192,6 @@ def disband_swarm_using_config(base_dir):
         os.remove(os.path.join(base_dir, 'docker-compose-generated.yml'))
     except Exception as e:
             print("Remove file: " + " : " + str(e))
-    
 
 def get_host_main(base_dir, machine_name):
     if not os.path.exists(os.path.join(base_dir, 'machines.json')):

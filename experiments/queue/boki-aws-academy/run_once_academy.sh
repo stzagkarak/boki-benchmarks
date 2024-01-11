@@ -94,8 +94,17 @@ ssh -q $CLIENT_HOST -- docker run -v /tmp:/tmp \
     zjia/boki-queuebench:sosp-ae \
     cp /queuebench-bin/benchmark /tmp/benchmark
 
-echo "Starting -- benchmark on CLIENT_HOST"
+echo "Preparing -- monitoring script on ALL_HOSTS"
+for HOST in $ALL_HOSTS; do
+    scp -q $BASE_DIR/monitoring.sh ubuntu@$HOST:/home/ubuntu/monitoring.sh
+done
 
+echo "Running -- monitoring script $EXP_IDENTIFIER on ALL_HOSTS"
+for HOST in $ALL_HOSTS; do
+    ssh -q $HOST -- /home/ubuntu/monitoring.sh $1
+done
+
+echo "Starting -- benchmark on CLIENT_HOST"
 ssh -q $CLIENT_HOST -- /tmp/benchmark \
     --faas_gateway=$ENTRY_HOST:8080 --fn_prefix=slib \
     --queue_prefix=$QUEUE_PREFIX --num_queues=1 --queue_shards=$NUM_SHARDS \
@@ -106,3 +115,9 @@ ssh -q $CLIENT_HOST -- /tmp/benchmark \
 
 echo "Running -- collect-container-logs on ACADEMY_HELPER_SCRIPT"
 $ACADEMY_HELPER_SCRIPT collect-container-logs --base-dir=$BASE_DIR --log-path=$EXP_DIR/logs
+
+echo "Collecting monitoring logs from ALL_HOSTS"
+for HOST in $ALL_HOSTS; do
+    scp -q ubuntu@$HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring
+    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+done
