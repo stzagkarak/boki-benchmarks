@@ -122,25 +122,25 @@ echo "Collecting monitoring logs from ALL_HOSTS"
 for HOST in $ALL_ENGINE_HOSTS; do
     mkdir -p $EXP_DIR/monitoring/engine-$HOST
     scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/engine-$HOST
-    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+    #ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
 done
 
 for HOST in $ALL_STORAGE_HOSTS; do
     mkdir -p $EXP_DIR/monitoring/storage-$HOST
     scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/storage-$HOST
-    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+    #ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
 done
 
 for HOST in $ALL_SEQUENCER_HOSTS; do
     mkdir -p $EXP_DIR/monitoring/sequencer-$HOST
     scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/sequencer-$HOST
-    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+    #ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
 done
 
 mkdir -p $EXP_DIR/monitoring/client-$CLIENT_HOST
 scp -q $CLIENT_HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/client-$CLIENT_HOST
-ssh -q $CLIENT_HOST -- rm -rf /home/ubuntu/monitoring/$1
+#ssh -q $CLIENT_HOST -- rm -rf /home/ubuntu/monitoring/$1
 
 mkdir -p $EXP_DIR/monitoring/gateway-$ENTRY_HOST
 scp -q $ENTRY_HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/gateway-$ENTRY_HOST
-ssh -q $ENTRY_HOST -- rm -rf /home/ubuntu/monitoring/$1
+#ssh -q $ENTRY_HOST -- rm -rf /home/ubuntu/monitoring/$1
