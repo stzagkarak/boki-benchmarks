@@ -43,6 +43,8 @@ done
 
 echo "Running -- get-machine-with-label (engine_node) on ACADEMY_HELPER_SCRIPT"
 ALL_ENGINE_HOSTS=`$ACADEMY_HELPER_SCRIPT get-machine-with-label --base-dir=$BASE_DIR --machine-label=engine_node`
+echo "Running -- get-machine-with-label (engine_node) on ACADEMY_HELPER_SCRIPT"
+ALL_SEQUENCER_HOSTS=`$ACADEMY_HELPER_SCRIPT get-machine-with-label --base-dir=$BASE_DIR --machine-label=sequencer_node`
 
 echo "Executing -- ... on ALL_ENGINE_HOSTS"
 for HOST in $ALL_ENGINE_HOSTS; do
@@ -117,8 +119,28 @@ echo "Running -- collect-container-logs on ACADEMY_HELPER_SCRIPT"
 $ACADEMY_HELPER_SCRIPT collect-container-logs --base-dir=$BASE_DIR --log-path=$EXP_DIR/logs
 
 echo "Collecting monitoring logs from ALL_HOSTS"
-for HOST in $ALL_HOSTS; do
+for HOST in $ALL_ENGINE_HOSTS; do
     mkdir -p $EXP_DIR/monitoring/$HOST
-    scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/$HOST
+    scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/engine-$HOST
     ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
 done
+
+for HOST in $ALL_STORAGE_HOSTS; do
+    mkdir -p $EXP_DIR/monitoring/$HOST
+    scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/storage-$HOST
+    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+done
+
+for HOST in $ALL_SEQUENCER_HOSTS; do
+    mkdir -p $EXP_DIR/monitoring/$HOST
+    scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/storage-$HOST
+    ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
+done
+
+mkdir -p $EXP_DIR/monitoring/$CLIENT_HOST
+scp -q $CLIENT_HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/client-$CLIENT_HOST
+ssh -q $CLIENT_HOST -- rm -rf /home/ubuntu/monitoring/$1
+
+mkdir -p $EXP_DIR/monitoring/$ENTRY_HOST
+scp -q $ENTRY_HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/gateway-$ENTRY_HOST
+ssh -q $ENTRY_HOST -- rm -rf /home/ubuntu/monitoring/$1
