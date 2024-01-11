@@ -96,7 +96,7 @@ ssh -q $CLIENT_HOST -- docker run -v /tmp:/tmp \
 
 echo "Preparing -- monitoring script on ALL_HOSTS"
 for HOST in $ALL_HOSTS; do
-    scp -q $BASE_DIR/monitoring.sh ubuntu@$HOST:/home/ubuntu/monitoring.sh
+    scp -q $BASE_DIR/monitoring.sh $HOST:/home/ubuntu/monitoring.sh
 done
 
 echo "Running -- monitoring script $EXP_IDENTIFIER on ALL_HOSTS"
@@ -118,6 +118,7 @@ $ACADEMY_HELPER_SCRIPT collect-container-logs --base-dir=$BASE_DIR --log-path=$E
 
 echo "Collecting monitoring logs from ALL_HOSTS"
 for HOST in $ALL_HOSTS; do
-    scp -q ubuntu@$HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring
+    mkdir -p $EXP_DIR/monitoring/$HOST
+    scp -q $HOST:/home/ubuntu/monitoring/$1 $EXP_DIR/monitoring/$HOST
     ssh -q $HOST -- rm -rf /home/ubuntu/monitoring/$1
 done
