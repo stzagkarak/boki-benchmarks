@@ -101,7 +101,7 @@ done
 
 echo "Running -- monitoring script $EXP_IDENTIFIER on ALL_HOSTS"
 for HOST in $ALL_HOSTS; do
-    ssh -q $HOST -- /home/ubuntu/monitoring.sh $1
+    ssh -q $HOST -- /home/ubuntu/monitoring.sh $1 &
 done
 
 echo "Starting -- benchmark on CLIENT_HOST"
