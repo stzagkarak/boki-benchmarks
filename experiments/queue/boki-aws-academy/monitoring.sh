@@ -36,7 +36,7 @@ do
 
     # mpstat 
     echo "-- LOOP $i | $dt" >> $mpstatfd
-    mpstat -h >> $mpstatfd
+    mpstat >> $mpstatfd
 
     # pidstat
     echo "-- LOOP $i | $dt" >> $pidstatfd
