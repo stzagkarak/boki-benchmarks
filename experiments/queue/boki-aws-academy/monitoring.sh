@@ -19,7 +19,7 @@ touch $mpstatfd
 touch $pidstatfd
 touch $ipslinkfd
 
-sleep 1
+sleep 10
 
 for i in {1..20}
 do
@@ -46,5 +46,5 @@ do
     echo "-- LOOP $i | $dt" >> $ipslinkfd
     ip -s link >> $ipslinkfd
 
-    sleep 1
+    sleep 20
 done
