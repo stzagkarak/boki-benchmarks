@@ -11,15 +11,15 @@ freefd=~/monitoring/$1/free.out
 iostatfd=~/monitoring/$1/iostat.out
 mpstatfd=~/monitoring/$1/mpstat.out
 pidstatfd=~/monitoring/$1/pidstat.out
-cifsiostatfd=~/monitoring/$1/cifsiostat.out
+ipslinkfd=~/monitoring/$1/ipslink.out
 
 touch $freefd
 touch $iostatfd
 touch $mpstatfd
 touch $pidstatfd
-touch $cifsiostatfd
+touch $ipslinkfd
 
-sleep 10
+sleep 1
 
 for i in {1..20}
 do
@@ -42,9 +42,9 @@ do
     echo "-- LOOP $i | $dt" >> $pidstatfd
     pidstat -h >> $pidstatfd
 
-    # cifsiostat
-    echo "-- LOOP $i | $dt" >> $cifsiostatfd
-    cifsiostat -h >> $cifsiostatfd
+    # ipslinkfd
+    echo "-- LOOP $i | $dt" >> $ipslinkfd
+    ip -s link >> $ipslinkfd
 
-    sleep 10
+    sleep 1
 done
