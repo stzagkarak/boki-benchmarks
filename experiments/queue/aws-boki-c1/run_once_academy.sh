@@ -96,15 +96,15 @@ ssh -q $CLIENT_HOST -- docker run -v /tmp:/tmp \
     zjia/boki-queuebench:sosp-ae \
     cp /queuebench-bin/benchmark /tmp/benchmark
 
-#echo "Preparing -- monitoring script on ALL_HOSTS"
-#for HOST in $ALL_HOSTS; do
-#    scp -q $BASE_DIR/monitoring.sh $HOST:/home/ubuntu/monitoring.sh
-#done
+echo "Preparing -- monitoring script on ALL_HOSTS"
+for HOST in $ALL_HOSTS; do
+    scp -q $BASE_DIR/monitoring.sh $HOST:/home/ubuntu/monitoring.sh
+done
 
-#echo "Running -- monitoring script $EXP_IDENTIFIER on ALL_HOSTS"
-#for HOST in $ALL_HOSTS; do
-#    ssh -q $HOST -- /home/ubuntu/monitoring.sh $1 &
-#done
+echo "Running -- monitoring script $EXP_IDENTIFIER on ALL_HOSTS"
+for HOST in $ALL_HOSTS; do
+    ssh -q $HOST -- /home/ubuntu/monitoring.sh $1 &
+done
 
 echo "Starting -- benchmark on CLIENT_HOST"
 ssh -q $CLIENT_HOST -- /tmp/benchmark \
@@ -118,24 +118,24 @@ ssh -q $CLIENT_HOST -- /tmp/benchmark \
 echo "Running -- collect-container-logs on ACADEMY_HELPER_SCRIPT"
 $ACADEMY_HELPER_SCRIPT collect-container-logs --base-dir=$BASE_DIR --log-path=$EXP_DIR/logs
 
-#echo "Collecting monitoring logs from ALL_HOSTS"
-#for HOST in $ALL_ENGINE_HOSTS; do
-#    mkdir -p $EXP_DIR/monitoring/engine-$HOST/$1
-#    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/engine-$HOST/$1
-#done
+echo "Collecting monitoring logs from ALL_HOSTS"
+for HOST in $ALL_ENGINE_HOSTS; do
+    mkdir -p $EXP_DIR/monitoring/engine-$HOST/$1
+    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/engine-$HOST/$1
+done
 
-#for HOST in $ALL_STORAGE_HOSTS; do
-#    mkdir -p $EXP_DIR/monitoring/storage-$HOST/$1
-#    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/storage-$HOST/$1
-#done
+for HOST in $ALL_STORAGE_HOSTS; do
+    mkdir -p $EXP_DIR/monitoring/storage-$HOST/$1
+    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/storage-$HOST/$1
+done
 
-#for HOST in $ALL_SEQUENCER_HOSTS; do
-#    mkdir -p $EXP_DIR/monitoring/sequencer-$HOST/$1
-#    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/sequencer-$HOST/$1
-#done
+for HOST in $ALL_SEQUENCER_HOSTS; do
+    mkdir -p $EXP_DIR/monitoring/sequencer-$HOST/$1
+    scp -qr $HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/sequencer-$HOST/$1
+done
 
-#mkdir -p $EXP_DIR/monitoring/client-$CLIENT_HOST/$1
-#scp -qr $CLIENT_HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/client-$CLIENT_HOST/$1
+mkdir -p $EXP_DIR/monitoring/client-$CLIENT_HOST/$1
+scp -qr $CLIENT_HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/client-$CLIENT_HOST/$1
 
-#mkdir -p $EXP_DIR/monitoring/gateway-$ENTRY_HOST/$1
-#scp -qr $ENTRY_HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/gateway-$ENTRY_HOST/$1
+mkdir -p $EXP_DIR/monitoring/gateway-$ENTRY_HOST/$1
+scp -qr $ENTRY_HOST:/home/ubuntu/monitoring/$1/* $EXP_DIR/monitoring/gateway-$ENTRY_HOST/$1
