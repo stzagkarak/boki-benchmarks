@@ -17,7 +17,7 @@ $AUTH | sudo -S usermod -aG docker $USER
 
 # install those in case boki executables needs them
 
-$AUTH | sudo -S apt-get install -y g++ make cmake pkg-config autoconf automake libtool curl unzip 
+$AUTH | sudo -S apt-get install -y g++ make cmake pkg-config autoconf automake libtool curl unzip sysstat
 
 # create in memory file system
 

@@ -98,6 +98,7 @@ ssh -q $CLIENT_HOST -- docker run -v /tmp:/tmp \
 
 echo "Preparing -- monitoring script on ALL_HOSTS"
 for HOST in $ALL_HOSTS; do
+    #echo "ubuntu" | ssh -q $HOST -- sudo -S apt-get install sysstat
     scp -q $BASE_DIR/monitoring.sh $HOST:/home/ubuntu/monitoring.sh
 done
 
