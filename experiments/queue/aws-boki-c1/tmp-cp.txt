@@ -1,21 +1,19 @@
-./init-setup.sh ip-172-31-95-222.ec2.internal exp-gateway 
-./init-setup.sh ip-172-31-92-26.ec2.internal exp-sequencer-1 
-./init-setup.sh ip-172-31-81-107.ec2.internal exp-engine-1 
-./init-setup.sh ip-172-31-82-118.ec2.internal exp-engine-2 
-## ./init-setup.sh ip-172-31-88-246.ec2.internal exp-engine-3 
-./init-setup.sh ip-172-31-86-64.ec2.internal exp-client 
+./init-setup.sh ip-172-31-45-49.ec2.internal exp-gateway 
+./init-setup.sh ip-172-31-34-97.ec2.internal exp-sequencer-1 
+./init-setup.sh ip-172-31-43-74.ec2.internal exp-engine-1 
+./init-setup.sh ip-172-31-32-62.ec2.internal exp-engine-2  
+./init-setup.sh ip-172-31-45-159.ec2.internal exp-client 
 
-3.88.21.255
-54.91.109.105
-54.235.234.166
-18.206.163.43
-## 44.204.4.192
-18.233.98.170
+54.198.82.145
+34.201.221.185
+54.145.149.164
+54.162.38.90
+18.234.250.7
 
-./init-setup.sh ip-172-31-27-27.ec2.internal exp-storage-1 
-./init-setup.sh ip-172-31-24-45.ec2.internal exp-storage-2 
-./init-setup.sh ip-172-31-90-101.ec2.internal exp-storage-3 
+./init-setup.sh ip-172-31-27-213.ec2.internal exp-storage-1 1
+./init-setup.sh ip-172-31-19-46.ec2.internal exp-storage-2 1
+./init-setup.sh ip-172-31-29-213.ec2.internal exp-storage-3 1
 
-54.226.78.225
-34.204.15.57
-3.82.217.114
+3.80.110.209
+54.227.193.51
+18.209.70.167
