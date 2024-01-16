@@ -5,10 +5,11 @@ import sys
 import re
 
 if __name__ == '__main__':
-    exp_dir = os.path.realpath(os.path.join(__file__, '../../experiments'))
+    exp_dir = "/home/spiros/Documents/Studies/hy559/boki-benchmark-project/results/r9";
+    #exp_dir = os.path.realpath(os.path.join(__file__, '../../experiments'))
 
-    result_files = glob.glob('%s/**/results/*/results.log' % (exp_dir,), recursive=True)
-    result_files += glob.glob('%s/**/results/*/latency.txt' % (exp_dir,), recursive=True)
+    result_files = glob.glob('%s/**/results.log' % (exp_dir,), recursive=True)
+    result_files += glob.glob('%s/**/latency.txt' % (exp_dir,), recursive=True)
     result_files.sort()
 
     for file_path in result_files:

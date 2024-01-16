@@ -1,0 +1,23 @@
+{
+    "machines": {
+        "exp-gateway": { "type": "r7i.large", "role": "manager" },
+        "exp-sequencer-1": { "type": "r7i.large", "role": "worker", "labels": ["sequencer_node=true"] },
+        "exp-engine-1": { "type": "r7i.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-engine-2": { "type": "r7i.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-storage-1": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
+        "exp-storage-2": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
+        "exp-storage-3": { "type": "z1d.large", "role": "worker", "mount_instance_storage": "nvme1n1", "labels": ["storage_node=true"] },
+        "exp-client": { "type": "r7i.large", "role": "client" }
+    },
+    "services": {
+        "zookeeper": { "placement": "exp-gateway" },
+        "zookeeper-setup": { "placement": "exp-gateway" },
+        "boki-controller": { "placement": "exp-gateway" },
+        "boki-gateway": { "placement": "exp-gateway" },
+        "boki-storage": { "placement_label": "storage_node", "replicas": 3 }, 
+        "boki-sequencer": { "placement_label": "sequencer_node", "replicas": 3 },
+        "boki-engine": { "placement_label": "engine_node", "replicas": 8 },
+        "consumer-fn": { "placement_label": "engine_node", "replicas": 8 },
+        "producer-fn": { "placement_label": "engine_node", "replicas": 8 }
+    }
+}
