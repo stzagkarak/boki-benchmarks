@@ -72,11 +72,11 @@ ssh -q $MANAGER_HOST -- docker stack deploy \
 echo "Sleeping for 60 secs"
 sleep 60
 
-echo "Optimizing docker on ALL_ENGINE_HOSTS"
-for HOST in $ALL_ENGINE_HOSTS; do
-    ENGINE_CONTAINER_ID=`$ACADEMY_HELPER_SCRIPT get-container-id --base-dir=$BASE_DIR --service faas-engine --machine-host $HOST`
-    echo 2048 | ssh -q $HOST -- sudo tee /sys/fs/cgroup/cpu,cpuacct/docker/$ENGINE_CONTAINER_ID/cpu.shares
-done
+#echo "Optimizing docker on ALL_ENGINE_HOSTS"
+#for HOST in $ALL_ENGINE_HOSTS; do
+#    ENGINE_CONTAINER_ID=`$ACADEMY_HELPER_SCRIPT get-container-id --base-dir=$BASE_DIR --service faas-engine --machine-host $HOST`
+#    echo 2048 | ssh -q $HOST -- sudo tee /sys/fs/cgroup/cpu,cpuacct/docker/$ENGINE_CONTAINER_ID/cpu.shares
+#done
 
 QUEUE_PREFIX=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 8 | head -n 1)
 
