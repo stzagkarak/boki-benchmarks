@@ -2,7 +2,7 @@
 
 #$1 -- machine private ipv4
 #$2 -- new machine hostname (as role) 
-#$3 -- is storage node
+#$3 -- is storage node ( do not provide if node is not a storage node )
 
 AUTH='echo "ubuntu"'
 
