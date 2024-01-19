@@ -3,6 +3,7 @@
         "exp-gateway": { "type": "m5.large", "role": "manager" },
         "exp-engine-1": { "type": "m5.large", "role": "worker", "labels": [ "engine_node=true" ] },
         "exp-engine-2": { "type": "m5.large", "role": "worker", "labels": [ "engine_node=true" ] },
+        "exp-engine-3": { "type": "m5.large", "role": "worker", "labels": [ "engine_node=true" ] },
         "exp-storage-1": { "type": "m5d.large", "role": "worker", "mount_instance_storage": "nvme0n1", "labels": ["storage_node=true"] },
         "exp-storage-2": { "type": "m5d.large", "role": "worker", "mount_instance_storage": "nvme0n1", "labels": ["storage_node=true"] },
         "exp-storage-3": { "type": "m5d.large", "role": "worker", "mount_instance_storage": "nvme0n1", "labels": ["storage_node=true"] },
